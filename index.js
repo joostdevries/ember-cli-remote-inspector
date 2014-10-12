@@ -28,7 +28,6 @@ debugServer.get('/ember-inspector', function(req, res) {
       '<script src="/ember-inspector-static/vendor/ember.prod.js"></script>' +
       '<script src="/ember-inspector-static/vendor/list-view.prod.js"></script>' +
       '<script src="/ember-inspector-static/panes/ember_extension.js"></script>' +
-      // '<script src="//localhost:' + port + '/debug.js?snipver=1" type="text/javascript"></script>' +
       '<script src="/ember-inspector-static/panes/start.js"></script>' +
       '<link href="/ember-inspector-static/panes/ember_extension.css" rel="stylesheet">' +
     '</head>' +
@@ -40,7 +39,7 @@ debugServer.get('/ember-inspector', function(req, res) {
 });
 
 
-http.listen(port, function(){
+http.listen(port,'0.0.0.0', function(){
   console.log('listening on *:35020');
 });
 
@@ -57,12 +56,23 @@ io.on('connection', function(socket){
 module.exports = {
   name: 'ember-cli-remote-inspector',
 
+  config: function(environment /*, appConfig */) {
+    var ENV = {
+      remoteDebug: true,
+      remoteDebugHost: 'localhost',
+      remoteDebugPort: 30820,
+      remoteConsole: false
+    }
+
+    return ENV;
+  },
+
   contentFor: function(type) {
     var debugPort = port;
 
     if (debugPort && type === 'head') {
-      return '<script src="//localhost:' + port + '/socket.io/socket.io.js" type="text/javascript"></script>' +
-        '<script src="//localhost:' + port + '/ember-inspector-static/ember_debug/ember_debug.js" type="text/javascript"></script>';
+      return '<script src="//jdv.local:' + port + '/socket.io/socket.io.js" type="text/javascript"></script>' +
+        '<script src="//jdv.local:' + port + '/ember-inspector-static/ember_debug/ember_debug.js" type="text/javascript"></script>';
     }
   }
 };
