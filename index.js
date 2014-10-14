@@ -12,24 +12,24 @@ var port = 30549;
 - Websocket connection for debugServer
 */
 debugServer.use(express.static(__dirname + '/public'));
-debugServer.use('/ember-inspector-static', express.static(__dirname + '/../ember-inspector/dist_bookmarklet'));
-
-
-debugServer.get('/ember-inspector', function(req, res) {
+debugServer.use('/', express.static(__dirname + '/../ember-inspector/dist_websocket'));
+debugServer.get('/', function(req, res) {
   var inspectorHtml = '<!doctype html>' +
   '<html>' +
     '<head>' +
       '<meta charset="utf-8">' +
+      '<base href="http://localhost:30549/ember-inspector">' +
       '<script src="//localhost:' + port + '/socket.io/socket.io.js" type="text/javascript"></script>' +
-      '<script src="/ember-inspector-static/vendor/loader.js"></script>' +
-      '<script src="/ember-inspector-static/vendor/resolver.js"></script>' +
-      '<script src="/ember-inspector-static/vendor/jquery.js"></script>' +
-      '<script src="/ember-inspector-static/vendor/handlebars.js"></script>' +
-      '<script src="/ember-inspector-static/vendor/ember.prod.js"></script>' +
-      '<script src="/ember-inspector-static/vendor/list-view.prod.js"></script>' +
-      '<script src="/ember-inspector-static/panes/ember_extension.js"></script>' +
-      '<script src="/ember-inspector-static/panes/start.js"></script>' +
-      '<link href="/ember-inspector-static/panes/ember_extension.css" rel="stylesheet">' +
+      '<script type="text/javascript">var remoteDebugSocket = io(\'http://localhost:'+port+'\')</script>' +
+      '<script src="/vendor/loader.js"></script>' +
+      '<script src="/vendor/resolver.js"></script>' +
+      '<script src="/vendor/jquery.js"></script>' +
+      '<script src="/vendor/handlebars.js"></script>' +
+      '<script src="/vendor/ember.prod.js"></script>' +
+      '<script src="/vendor/list-view.prod.js"></script>' +
+      '<script src="/panes/ember_extension.js"></script>' +
+      '<script src="/panes/start.js"></script>' +
+      '<link href="/panes/ember_extension.css" rel="stylesheet">' +
     '</head>' +
     '<body>' +
     '</body> ' +
@@ -72,7 +72,8 @@ module.exports = {
 
     if (debugPort && type === 'head') {
       return '<script src="//jdv.local:' + port + '/socket.io/socket.io.js" type="text/javascript"></script>' +
-        '<script src="//jdv.local:' + port + '/ember-inspector-static/ember_debug/ember_debug.js" type="text/javascript"></script>';
+        '<script type="text/javascript">var remoteDebugSocket = io(\'http://localhost:'+port+'\')</script>' +
+        '<script src="//jdv.local:' + port + '/ember_debug/ember_debug.js" type="text/javascript"></script>';
     }
   }
 };
