@@ -13,6 +13,9 @@ Lets you inspect apps running on different devices/browsers over the network usi
 * Magic.
 
 
+* If no magic occurs, you might need to add `ws://localhost:30820 http://localhost:30820` to your `"connect-src"` for the [CSP addon](https://github.com/rwjblue/ember-cli-content-security-policy)
+
+
 ## Options
 
 * `remoteDebug` (bool) Enable/disable remote debugging. Defaults to **true** in development.
