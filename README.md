@@ -4,6 +4,15 @@ Lets you inspect apps running on different devices/browsers over the network usi
 
 **Warning: Still a work in progress**
 
+## Usage
+
+* (Untill officialy released) add `"ember-cli-remote-inspector":"joostdevries/ember-cli-remote-inspector"` to your `package.json`
+* Run `ember serve` from your project root.
+* Visit `localhost:30820` to open up the inspector
+* Visit `localhost:4200` from another browser.
+* Magic.
+
+
 ## Options
 
 * `remoteDebug` (bool) Enable/disable remote debugging. Defaults to **true** in development.
