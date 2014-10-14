@@ -17,7 +17,8 @@
   "author": "Joost de Vries",
   "license": "MIT",
   "dependencies": {
-    "socket.io":"1.1.0"
+    "socket.io":"1.1.0",
+    "ember-extension": "joostdevries/ember-inspector#websockets"
   },
   "devDependencies": {
     "body-parser": "^1.2.0",
@@ -29,8 +30,7 @@
     "ember-cli-qunit": "0.1.0",
     "ember-data": "1.0.0-beta.10",
     "express": "^4.8.5",
-    "glob": "^4.0.5",
-    "ember-extension": "joostdevries/ember-inspector#websockets"
+    "glob": "^4.0.5"
   },
   "keywords": [
     "ember-addon"
