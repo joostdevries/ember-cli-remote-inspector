@@ -2,7 +2,7 @@
 
 Lets you inspect apps running on different devices/browsers over the network using websockets.
 
-**Warning: Still a work in progress**
+**Warning: Still a work in progress**. Tracking development in #1 and emberjs/ember-inspector#243
 
 ## Usage
 
