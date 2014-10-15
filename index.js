@@ -36,7 +36,7 @@ module.exports = {
     process.env.EMBER_CLI_REMOTE_DEBUG_HOST = appConfig.remoteDebugHost;
 
     remoteDebugServer.setSocketScript(this.getSocketScript(process.env.EMBER_CLI_REMOTE_DEBUG_PORT, process.env.EMBER_CLI_REMOTE_DEBUG_HOST));
-    remoteDebugServer.start(process.env.EMBER_CLI_REMOTE_DEBUG_PORT, process.env.EMBER_CLI_REMOTE_DEBUG_HOST);
+    remoteDebugServer.start(process.env.EMBER_CLI_REMOTE_DEBUG_PORT, '0.0.0.0');
   },
 
   contentFor: function(type) {
