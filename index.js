@@ -34,18 +34,33 @@ module.exports = {
 
   serverMiddleware: function(config) {
     var options = config.options;
+    var app = config.app;
     var project = options.project;
     var appConfig = project.config(options.environment);
 
     if((options.environment!=='development') || !appConfig.remoteDebug) {
       return;
     }
-    
+
     var port = process.env.EMBER_CLI_REMOTE_DEBUG_PORT = appConfig.remoteDebugPort,
       host = process.env.EMBER_CLI_REMOTE_DEBUG_HOST = appConfig.remoteDebugHost;
 
     remoteDebugServer.setRemoteDebugSocketScript(this.getRemoteDebugSocketScript(port, host));
     remoteDebugServer.start(port, '0.0.0.0');
+
+    app.use(function(req, res, next) {
+      var cspHeader = res.getHeader('Content-Security-Policy')?'Content-Security-Policy':(res.getHeader('Content-Security-Policy-Report-Only')?'Content-Security-Policy-Report-Only':null);
+
+      if(cspHeader) {
+        var cspHeaderValue = res.getHeader(cspHeader);
+        cspHeaderValue = cspHeaderValue.replace('connect-src \'self\' ', 'connect-src \'self\' http://'+host+':'+port+' ws://'+host+':'+port+' ')
+        cspHeaderValue = cspHeaderValue.replace('script-src \'self\' ', 'script-src \'self\' \'unsafe-inline\' http://'+host+':'+port+' ')
+        res.setHeader(cspHeader, cspHeaderValue);
+        res.setHeader('X-' + cspHeader, cspHeaderValue);
+      }
+
+      next();
+    });    
   },
 
   contentFor: function(type) {
