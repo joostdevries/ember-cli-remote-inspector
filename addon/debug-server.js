@@ -16,8 +16,8 @@ remoteDebugger.get('/', function(req, res) {
 var inspectorSocket = null;
 
 module.exports = {
-  setSocketScript: function(socketScript) {
-    inspectorHtml = inspectorHtml.replace('{{ remote-port }}', socketScript)
+  setRemoteDebugSocketScript: function(scriptHtml) {
+    inspectorHtml = inspectorHtml.replace('{{ remote-port }}', scriptHtml)
   },
 
   start: function(port, host) {

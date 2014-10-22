@@ -14,13 +14,22 @@ module.exports = {
     return ENV;
   },
 
-  getSocketScript: function(port, host) {
+  getRemoteDebugSocketScript: function(port, host) {
     return '<script src="//' + host + ':' + port + '/socket.io/socket.io.js" type="text/javascript"></script>' +
-      '<script type="text/javascript">var remoteDebugSocket = io(\'http://' + host + ':'+port+'\')</script>';
+           '<script type="text/javascript">' +
+           '  window.EMBER_INSPECTOR_CONFIG = window.EMBER_INSPECTOR_CONFIG || {};' +
+           '  window.EMBER_INSPECTOR_CONFIG.remoteDebugSocket = io(\'http://' + host + ':'+port+'\');' +
+           '</script>';
   },
 
   getEmberDebugScript: function(port, host) {
-    return '<script src="//' + host + ':' + port + '/ember_debug/ember_debug.js" type="text/javascript"></script>';
+    return '<script type="text/javascript">' +
+           '  (function(){' +
+           '    var script = document.createElement(\'script\');' +
+           '    script.src = \'//' + host + ':' + port + '/ember_debug/ember_debug.js\';' +
+           '    document.body.appendChild(script);' +
+           '  })();' +
+           '</script>';
   },
 
   serverMiddleware: function(config) {
@@ -32,18 +41,19 @@ module.exports = {
       return;
     }
     
-    process.env.EMBER_CLI_REMOTE_DEBUG_PORT = appConfig.remoteDebugPort;
-    process.env.EMBER_CLI_REMOTE_DEBUG_HOST = appConfig.remoteDebugHost;
+    var port = process.env.EMBER_CLI_REMOTE_DEBUG_PORT = appConfig.remoteDebugPort,
+      host = process.env.EMBER_CLI_REMOTE_DEBUG_HOST = appConfig.remoteDebugHost;
 
-    remoteDebugServer.setSocketScript(this.getSocketScript(process.env.EMBER_CLI_REMOTE_DEBUG_PORT, process.env.EMBER_CLI_REMOTE_DEBUG_HOST));
-    remoteDebugServer.start(process.env.EMBER_CLI_REMOTE_DEBUG_PORT, '0.0.0.0');
+    remoteDebugServer.setRemoteDebugSocketScript(this.getRemoteDebugSocketScript(port, host));
+    remoteDebugServer.start(port, '0.0.0.0');
   },
 
   contentFor: function(type) {
-    var port = 30820;
+    var port = process.env.EMBER_CLI_REMOTE_DEBUG_PORT,
+      host = process.env.EMBER_CLI_REMOTE_DEBUG_HOST;
 
-    if (type === 'head' && process.env.EMBER_CLI_REMOTE_DEBUG_PORT && process.env.EMBER_CLI_REMOTE_DEBUG_HOST) {
-      return this.getSocketScript(process.env.EMBER_CLI_REMOTE_DEBUG_PORT, process.env.EMBER_CLI_REMOTE_DEBUG_HOST) + this.getEmberDebugScript(process.env.EMBER_CLI_REMOTE_DEBUG_PORT, process.env.EMBER_CLI_REMOTE_DEBUG_HOST);
+    if (type === 'body' && port && host) {
+      return this.getRemoteDebugSocketScript(port, host) + this.getEmberDebugScript(port, host);
     }
   }
 };
