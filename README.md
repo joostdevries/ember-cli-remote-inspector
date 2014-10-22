@@ -2,7 +2,7 @@
 
 Lets you inspect apps running on different devices/browsers over the network using websockets.
 
-**Warning: Still a work in progress**
+**Warning: Still a work in progress**. Tracking development in [#1](https://github.com/joostdevries/ember-cli-remote-inspector/issues/1) and [emberjs/ember-inspector#235](https://github.com/emberjs/ember-inspector/issues/235)
 
 ## Usage
 
@@ -24,6 +24,10 @@ Lets you inspect apps running on different devices/browsers over the network usi
 * `remoteDebug` (bool) Enable/disable remote debugging. Defaults to **true** in development.
 * `remoteDebugHost` What host should the inspector run on. This hostname/ip should be accessible over the network. Defaults to **localhost**.
 * `remoteDebugPort` What port should the inspector run on. Default: **30820**
+
+## Known issues
+
+* Ember-Debug doesn't always work properly on Mobile Safari. I'm tracking this down and will include a fix in the PR I've got open at ember-inspector.
 
 ## Credits
 
