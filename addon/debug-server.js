@@ -26,13 +26,13 @@ module.exports = {
     });
 
     remoteDebugSocket.on('connect', function(socket){
-      socket.on('debugmsg', function(msg){
+      socket.on('emberInspectorMessage', function(msg){
         if(msg.from==='devtools') {
           inspectorSocket = socket;
-          remoteDebugSocket.emit('debugmsg', msg);
+          remoteDebugSocket.emit('emberInspectorMessage', msg);
         }
         else if(inspectorSocket) {
-          inspectorSocket.emit('debugmsg', msg);
+          inspectorSocket.emit('emberInspectorMessage', msg);
         }
       });
     });
