@@ -32,6 +32,10 @@ module.exports = {
            '</script>';
   },
 
+  /*
+   Starts the server for the inspector + socket.io and
+   updates CSP header if present
+   */
   serverMiddleware: function(config) {
     var options = config.options;
     var app = config.app;
@@ -48,6 +52,8 @@ module.exports = {
     remoteDebugServer.setRemoteDebugSocketScript(this.getRemoteDebugSocketScript(port, host));
     remoteDebugServer.start(port, '0.0.0.0');
 
+    // Currently only used to update the CSP header
+    // injected by ember-cli-content-security-policy
     app.use(function(req, res, next) {
       var cspHeader = res.getHeader('Content-Security-Policy')?'Content-Security-Policy':(res.getHeader('Content-Security-Policy-Report-Only')?'Content-Security-Policy-Report-Only':null);
 
