@@ -4,7 +4,7 @@ Lets you inspect apps running on different devices/browsers over the network usi
 
 ## Usage
 
-* (Untill officialy released) add `"ember-cli-remote-inspector":"joostdevries/ember-cli-remote-inspector"` to your `package.json`
+* `npm install --save-dev ember-cli-remote-inspector`
 * Run `ember serve` from your project root.
 * Visit `localhost:30820` to open up the inspector
 * Visit `localhost:4200` from another browser.

@@ -18,7 +18,7 @@
   "license": "MIT",
   "dependencies": {
     "socket.io":"1.1.0",
-    "ember-extension": "*"
+    "ember-inspector": "emberjs/ember-inspector"
   },
   "devDependencies": {
     "body-parser": "^1.2.0",
