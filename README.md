@@ -21,4 +21,4 @@ Lets you inspect apps running on different devices/browsers over the network usi
 
 ## Credits
 
-Much love goes out to @teddyzeeny and the other people working on the [ember inspector](https://github.com/emberjs/ember-inspector) for making this an easy job. Also credits to @rwjblue and @stefanpenner for ember-cli (addons).
+Much love goes out to @teddyzeenny and the other people working on the [ember inspector](https://github.com/emberjs/ember-inspector) for making this an easy job. Also credits to @rwjblue and @stefanpenner for ember-cli (addons).
