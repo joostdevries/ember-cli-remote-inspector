@@ -20,7 +20,7 @@ You can set these options in your `config/environment`, eg. `ENV.remoteDebug = t
 * `remoteDebug` (bool) Enable/disable remote debugging. Defaults to **true** in development.
 * `remoteDebugHost` What host should the inspector run on. This hostname/ip should be accessible over the network. Defaults to **localhost**.
 * `remoteDebugPort` What port should the inspector run on. Default: **30820**.
-* `remoteDebugScheme` What scheme should be used to load ember-debug and connect to the inspector from your app. Default: **http**.
+* `remoteDebugScheme` What scheme should be used to load ember-debug and connect to the inspector from your app. Defaults to an empty string which means protocol-relative URLs will be used.
 
 ## Credits
 
@@ -28,5 +28,5 @@ Much love goes out to @teddyzeenny and the other people working on the [ember in
 
 ## Changelog
 
-- 0.0.2 - Support for `remoteDebugScheme` (defaults to "http")
+- 0.0.2 - Support for `remoteDebugScheme` (defaults to "")
 - 0.0.1 - Initial release
