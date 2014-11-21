@@ -15,6 +15,8 @@ Lets you inspect apps running on different devices/browsers over the network usi
 
 ## Options
 
+You can set these options in your `config/environment`, eg. `ENV.remoteDebug = true`;
+
 * `remoteDebug` (bool) Enable/disable remote debugging. Defaults to **true** in development.
 * `remoteDebugHost` What host should the inspector run on. This hostname/ip should be accessible over the network. Defaults to **localhost**.
 * `remoteDebugPort` What port should the inspector run on. Default: **30820**.
