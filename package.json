@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-remote-inspector",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "Use Ember Inspector on apps running on mobile devices.",
   "directories": {
     "doc": "doc",
