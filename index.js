@@ -71,7 +71,7 @@ module.exports = {
       }
 
       next();
-    });    
+    });
   },
 
   contentFor: function(type) {
