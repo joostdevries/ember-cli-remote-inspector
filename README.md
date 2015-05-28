@@ -1,5 +1,7 @@
 # ember-cli-remote-inspector
 
+[![Build Status](https://travis-ci.org/joostdevries/ember-cli-remote-inspector.svg)](https://travis-ci.org/joostdevries/ember-cli-remote-inspector)
+
 Lets you inspect apps running on different devices/browsers over the network using websockets.
 
 ## Usage
@@ -28,5 +30,9 @@ Much love goes out to @teddyzeenny and the other people working on the [ember in
 
 ## Changelog
 
+- 0.1.0
+  - Updated Ember Inspector to 1.8.0
+  - Added acceptance tests
+  - Listed Express as a dependency
 - 0.0.2 - Support for `remoteDebugScheme` (defaults to "")
 - 0.0.1 - Initial release
