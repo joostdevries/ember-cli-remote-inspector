@@ -9,6 +9,7 @@
     "define",
     "describe",
     "before",
+    "after",
     "it",
     "console",
     "visit",
