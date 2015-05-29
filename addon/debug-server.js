@@ -1,3 +1,4 @@
+/* jshint node: true */
 // Websocket server which handles data to/from the inspector
 var fs = require('fs');
 var express = require('express');
@@ -10,10 +11,13 @@ var inspectorSocket = null;
 // Load the inspector html from the node_modules folder
 // (it should be there because we list it as a dependency)
 var inspectorPath = __dirname + '/../node_modules/ember-inspector/dist_websocket/';
-var inspectorHtml = fs.readFileSync(inspectorPath + 'panes/index.html').toString();
 
-remoteDebugger.use('/', express.static(inspectorPath)); // Serve inspector static files
-remoteDebugger.get('/', function(req, res) {            // Serve inspector
+// Server static files for the inspector
+remoteDebugger.use('/', express.static(inspectorPath, {index:false}));
+
+// Serve the inspector itself
+var inspectorHtml = fs.readFileSync(inspectorPath + 'index.html').toString();
+remoteDebugger.get('/', function(req, res) {
   res.end(inspectorHtml);
 });
 
@@ -22,7 +26,7 @@ module.exports = {
    Injects the script used to connect socket.io to the inspector into the inspector HTML
    */
   setRemoteDebugSocketScript: function(scriptHtml) {
-    inspectorHtml = inspectorHtml.replace('{{ remote-port }}', scriptHtml)
+    inspectorHtml = inspectorHtml.replace('{{ remote-port }}', scriptHtml);
   },
 
   /*
@@ -48,4 +52,4 @@ module.exports = {
       });
     });
   }
-}
+};

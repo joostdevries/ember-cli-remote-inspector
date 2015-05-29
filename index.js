@@ -27,7 +27,7 @@ module.exports = {
     return '<script type="text/javascript">' +
            '  (function(){' +
            '    var script = document.createElement(\'script\');' +
-           '    script.src = \'' + scheme + '//' + host + ':' + port + '/ember_debug/ember_debug.js\';' +
+           '    script.src = \'' + scheme + '//' + host + ':' + port + '/ember_debug.js\';' +
            '    document.body.appendChild(script);' +
            '  })();' +
            '</script>';
@@ -71,7 +71,7 @@ module.exports = {
       }
 
       next();
-    });    
+    });
   },
 
   contentFor: function(type) {
