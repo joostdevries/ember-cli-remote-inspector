@@ -19,7 +19,7 @@
   "license": "MIT",
   "dependencies": {
     "socket.io":"1.3.5",
-    "ember-inspector": "1.8.0",
+    "ember-inspector": "https://github.com/alexspeller/ember-inspector#master",
     "express": "^4.8.5"
   },
   "devDependencies": {
