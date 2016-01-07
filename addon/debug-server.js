@@ -10,7 +10,7 @@ var inspectorSocket = null;
 
 // Load the inspector html from the node_modules folder
 // (it should be there because we list it as a dependency)
-var inspectorPath = __dirname + '/../node_modules/ember-inspector/dist_websocket/';
+var inspectorPath = __dirname + '/../node_modules/ember-inspector/dist/websocket/';
 
 // Server static files for the inspector
 remoteDebugger.use('/', express.static(inspectorPath, {index:false}));
