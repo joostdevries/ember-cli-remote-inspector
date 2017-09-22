@@ -1,4 +1,4 @@
-var remoteDebugServer = require('./addon/debug-server');
+var remoteDebugServer = require('./lib/debug-server');
 
 module.exports = {
   name: 'ember-cli-remote-inspector',
@@ -10,7 +10,7 @@ module.exports = {
       remoteDebugScheme: '',
       remoteDebugPort: 30820,
       remoteConsole: false
-    }
+    };
 
     return ENV;
   },
@@ -19,7 +19,7 @@ module.exports = {
     return '<script src="' + scheme + '//' + host + ':' + port + '/socket.io/socket.io.js" type="text/javascript"></script>' +
            '<script type="text/javascript">' +
            '  window.EMBER_INSPECTOR_CONFIG = window.EMBER_INSPECTOR_CONFIG || {};' +
-           '  window.EMBER_INSPECTOR_CONFIG.remoteDebugSocket = io(\'' + (scheme ? scheme+'//' : '') + host + ':'+port+'\');' +
+           '  window.EMBER_INSPECTOR_CONFIG.remoteDebugSocket = io(\'' + (scheme ? scheme + '//' : '') + host + ':'+ port + '\');' +
            '</script>';
   },
 
